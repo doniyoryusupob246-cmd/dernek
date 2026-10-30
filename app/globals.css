@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-50: #e8f6f8;
+  --color-brand-100: #c8e9ef;
+  --color-brand-200: #93d2de;
+  --color-brand-300: #55b5c7;
+  --color-brand-400: #1f98af;
+  --color-brand-500: #00829b;
+  --color-brand-600: #006e84;
+  --color-brand-700: #005a6c;
+  --color-brand-800: #064855;
+  --color-brand-900: #053943;
+  --color-brand-950: #03282f;
+
+  --color-gold-50: #fbf6ea;
+  --color-gold-100: #f6ecd4;
+  --color-gold-200: #ecd8a9;
+  --color-gold-300: #e0c27f;
+  --color-gold-400: #d5b16b;
+  --color-gold-500: #cba258;
+  --color-gold-600: #b28843;
+  --color-gold-700: #8e6a33;
+  --color-gold-800: #6c5028;
+
+  --color-cream: #faf7f0;
+  --color-sand: #f3ede1;
+  --color-line: #e6decd;
+  --color-ink: #11262b;
+  --color-muted: #55676c;
+
+  --animate-rise: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-marquee: marquee 45s linear infinite;
+  --animate-spin-slow: spin 140s linear infinite;
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+@theme inline {
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-playfair), ui-serif, Georgia, serif;
+}
+
+@utility wrap {
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  @media (width >= 40rem) {
+    padding-inline: 1.5rem;
+  }
+  @media (width >= 64rem) {
+    padding-inline: 2rem;
+  }
+}
+
+/* Octagram lattice from the logo: gold lines for dark backgrounds, teal for light ones. */
+@utility pattern-gold {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%23cba258' stroke-opacity='.2'%3E%3Crect x='17.86' y='17.86' width='28.28' height='28.28'/%3E%3Cpath d='M32 12 52 32 32 52 12 32ZM32 0v12M32 52v12M0 32h12M52 32h12M6 0 0 6M58 0l6 6M64 58l-6 6M0 58l6 6'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 64px 64px;
+}
+
+@utility pattern-teal {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%2300829b' stroke-opacity='.09'%3E%3Crect x='17.86' y='17.86' width='28.28' height='28.28'/%3E%3Cpath d='M32 12 52 32 32 52 12 32ZM32 0v12M32 52v12M0 32h12M52 32h12M6 0 0 6M58 0l6 6M64 58l-6 6M0 58l6 6'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 64px 64px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background: var(--color-cream);
+    color: var(--color-ink);
+  }
+
+  ::selection {
+    background: var(--color-gold-300);
+    color: var(--color-brand-950);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold-500);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
